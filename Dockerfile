@@ -9,6 +9,10 @@ RUN apt-get -y update && \
     curl -H 'Cache-Control: no-cache' \
         https://raw.githubusercontent.com/nimbix/image-common/$GIT_BRANCH/install-nimbix.sh \
         | bash -s -- --setup-nimbix-desktop --image-common-branch $GIT_BRANCH
+# Add terminal shortcut
+RUN mkdir -p /etc/skel/Desktop
+ADD exo-terminal-emulator.desktop /etc/skel/Desktop/exo-terminal-emulator.desktop
+RUN chmod +x /etc/skel/Desktop/exo-terminal-emulator.desktop
 # Metadata for App
 ADD AppDef.json /etc/NAE/AppDef.json
 RUN curl --fail -X POST -d @/etc/NAE/AppDef.json https://api.jarvice.com/jarvice/validate
