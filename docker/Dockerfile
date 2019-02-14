@@ -1,4 +1,5 @@
-FROM ubuntu:xenial
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE:-ubuntu:xenial}
 MAINTAINER Nimbix, Inc.
 # Branch for JARVICE Desktop (leave null for default)
 ARG GIT_BRANCH
